@@ -1,6 +1,6 @@
 ---
 - import_playbook: enable_epel.yml
-- hosts: rhel
+- hosts: all
   gather_facts: false
   become: true
   strategy: free
