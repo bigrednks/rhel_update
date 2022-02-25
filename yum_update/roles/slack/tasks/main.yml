@@ -1,0 +1,8 @@
+---
+- name: Send notification messages via Slack
+  slack:
+    token: T01HKBWH4AW/B02S8KT9EAD/mpUffmQkARdoQ7hkgdjEaOJG
+    channel: "#ansible"
+    parse: "full"
+    color: good
+    msg: " {{ message }}."

@@ -1,0 +1,3 @@
+---
+messages: '{{ inventory_hostname }}'
+slack_token: T01HKBWH4AW/B02S8KT9EAD/mpUffmQkARdoQ7hkgdjEaOJG

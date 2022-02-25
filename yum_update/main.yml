@@ -1,0 +1,32 @@
+---
+- import_playbook: std_packages.yml
+- hosts: rhel
+  gather_facts: false
+  become: true
+  serial: 1
+  any_errors_fatal: yes
+  vars_prompt:
+    name: "confirmation"
+    # prompt: "Are you sure you want to Update with reboots? Answer with 'YES'"
+    default: "YES"
+    private: no
+  tasks:
+
+  - name: Check Confirmation
+    fail: msg="Playbook run confirmation failed"
+    when: confirmation != "YES"
+
+  - name: DNF update the system
+    dnf:
+      name:  "*"
+      state: latest
+    when: ansible_facts['os_family'] == 'RedHat' and ansible_facts  ['distribution_major_version'] >= '8'
+
+  - name: Yum update the system
+    yum:
+      name: "*"
+      state: latest
+    when: ansible_facts['os_family'] == 'RedHat' and ansible_facts ['distribution_major_version'] <= '7'
+
+  roles:
+    - { role: slack, message: 'upgraded [{{ ansible_hostname }}] and it was successfully updated ' }
