@@ -1,6 +1,6 @@
 ---
 - import_playbook: enable_epel.yml
-- hosts: all
+- hosts: centos
   gather_facts: false
   become: true
   strategy: free
