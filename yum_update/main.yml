@@ -1,6 +1,6 @@
 ---
 - import_playbook: std_packages.yml
-- hosts: all
+- hosts: centos
   gather_facts: false
   become: true
   serial: 1
